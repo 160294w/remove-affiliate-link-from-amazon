@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Affiliate Link Remover - テスト用ページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        .test-link:hover {
+            background: #e0e0e0;
+        }
+        .section {
+            margin: 30px 0;
+        }
+        h2 {
+            color: #333;
+        }
+        .instructions {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Amazon Affiliate Link Remover - 動作テスト</h1>
+    
+    <div class="instructions">
+        <h3>使用方法:</h3>
+        <ol>
+            <li>Chromeで chrome://extensions/ にアクセス</li>
+            <li>「デベロッパーモード」を有効にする</li>
+            <li>「パッケージ化されていない拡張機能を読み込む」をクリック</li>
+            <li>このフォルダを選択</li>
+            <li>拡張機能が読み込まれたら、下記のテストリンクをクリック</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>テスト用アフィリエイトリンク</h2>
+        <p>これらのリンクをクリックすると、アフィリエイトパラメータが削除されたクリーンなURLにリダイレクトされるはずです：</p>
+        
+        <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4?tag=mothergoose04-22&linkCode=ogi&th=1&psc=1" 
+           class="test-link" target="_blank">
+            商品ページ（tagとlinkCodeパラメータ付き）
+        </a>
+        
+        <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4?ref=sr_1_1&tag=affiliate123-22&ie=UTF8&camp=247&creative=1211" 
+           class="test-link" target="_blank">
+            商品ページ（複数のアフィリエイトパラメータ付き）
+        </a>
+        
+        <a href="https://www.amazon.co.jp/s?k=iPhone&tag=test-22&ref_=nb_sb_noss" 
+           class="test-link" target="_blank">
+            検索結果ページ（tagとref_パラメータ付き）
+        </a>
+        
+        <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4?ascsubtag=test123&linkId=abc123&creativeASIN=B08WJ4HLM4" 
+           class="test-link" target="_blank">
+            商品ページ（その他のアフィリエイトパラメータ付き）
+        </a>
+    </div>
+
+    <div class="section">
+        <h2>クリーンなリンク（変更されないはず）</h2>
+        <p>これらのリンクはアフィリエイトパラメータを含まないため、変更されません：</p>
+        
+        <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4" 
+           class="test-link" target="_blank">
+            基本的な商品ページ
+        </a>
+        
+        <a href="https://www.amazon.co.jp/s?k=iPhone&language=ja_JP" 
+           class="test-link" target="_blank">
+            検索結果ページ（通常のパラメータのみ）
+        </a>
+    </div>
+
+    <div class="section">
+        <h2>動的に追加されるリンクのテスト</h2>
+        <button onclick="addDynamicLink()">アフィリエイトリンクを動的追加</button>
+        <div id="dynamic-links"></div>
+    </div>
+
+    <script>
+        function addDynamicLink() {
+            const container = document.getElementById('dynamic-links');
+            const link = document.createElement('a');
+            link.href = 'https://www.amazon.co.jp/dp/B08WJ4HLM4?tag=dynamic-22&linkCode=test';
+            link.className = 'test-link';
+            link.target = '_blank';
+            link.textContent = '動的に追加されたアフィリエイトリンク（クリックしてテスト）';
+            container.appendChild(link);
+        }
+
+        // ページ読み込み時にコンソールログを確認
+        console.log('テストページが読み込まれました。拡張機能の動作をコンソールで確認してください。');
+        
+        // 3秒後に動的リンクをテスト追加
+        setTimeout(() => {
+            console.log('動的リンクを追加中...');
+            addDynamicLink();
+        }, 3000);
+    </script>
+</body>
+</html>
