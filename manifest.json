@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Amazon Affiliate Link Remover",
+  "version": "1.0",
+  "description": "Amazon.co.jpのアフィリエイトパラメータを自動的に削除してクリーンなリンクにリダイレクトします",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.amazon.co.jp/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.co.jp/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
