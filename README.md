@@ -1,5 +1,7 @@
 # Amazon Affiliate Link Remover
 
+[日本語] | [English](./README_EN.md)
+
 Amazon.co.jpのアフィリエイトパラメータを自動的に削除してクリーンなリンクにリダイレクトするChrome拡張機能です。
 
 ## 機能
@@ -46,4 +48,4 @@ remove-affiliate-link-from-amazon/
 ├── icon128.png        # 128x128アイコン
 ├── test.html          # テスト用ページ
 └── README.md          # このファイル
-```# remove-affiliate-link-from-amazon
+```
