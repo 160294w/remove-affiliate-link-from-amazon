@@ -96,10 +96,23 @@
       });
     });
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+    // document.bodyが存在する場合のみObserverを開始
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    } else {
+      // bodyがまだ存在しない場合は、DOMContentLoadedで再試行
+      document.addEventListener('DOMContentLoaded', function() {
+        if (document.body) {
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        }
+      });
+    }
   }
 
   // 初期化処理
