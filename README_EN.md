@@ -4,6 +4,10 @@
 
 A Chrome extension that automatically removes affiliate parameters from Amazon.co.jp links and redirects to clean URLs.
 
+## Purpose
+
+This extension was developed to avoid clicking on your own affiliate links. As a side effect, all affiliate links will be disabled, so please be aware that this may impact other people's affiliate income as well.
+
 ## Features
 
 - Automatically removes affiliate parameters (`tag`, `linkCode`, `ref`, etc.) from Amazon.co.jp pages
