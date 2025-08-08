@@ -37,6 +37,26 @@ Amazon.co.jpのアフィリエイトパラメータを自動的に削除して�
 - `ascsubtag` - ASCサブタグ
 - `ie` - エンコーディング
 
+## 使用例
+
+### 変更前（アフィリエイト付きURL）
+```
+https://www.amazon.co.jp/dp/B00ZR7XVNO?tag=example-affiliate-22&linkCode=abc&th=1&psc=1
+```
+
+### 変更後（クリーンなURL）
+```
+https://www.amazon.co.jp/dp/B00ZR7XVNO?th=1&psc=1
+```
+
+**削除されたパラメータ:**
+- `tag=example-affiliate-22` - アフィリエイトタグ
+- `linkCode=abc` - リンクコード
+
+**保持されたパラメータ:**
+- `th=1` - サムネイル表示設定  
+- `psc=1` - 商品選択設定
+
 ## ファイル構成
 
 ```

@@ -37,6 +37,26 @@ A Chrome extension that automatically removes affiliate parameters from Amazon.c
 - `ascsubtag` - ASC subtag
 - `ie` - Encoding
 
+## Usage Example
+
+### Before (URL with affiliate parameters)
+```
+https://www.amazon.co.jp/dp/B00ZR7XVNO?tag=example-affiliate-22&linkCode=abc&th=1&psc=1
+```
+
+### After (Clean URL)
+```
+https://www.amazon.co.jp/dp/B00ZR7XVNO?th=1&psc=1
+```
+
+**Removed parameters:**
+- `tag=example-affiliate-22` - Affiliate tag
+- `linkCode=abc` - Link code
+
+**Preserved parameters:**
+- `th=1` - Thumbnail display setting
+- `psc=1` - Product selection setting
+
 ## File Structure
 
 ```
