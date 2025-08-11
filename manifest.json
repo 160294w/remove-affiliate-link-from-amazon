@@ -1,17 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "Amazon Affiliate Link Remover",
+  "name": "Affiliate Link Remover",
   "version": "1.0",
-  "description": "Amazon.co.jpのアフィリエイトパラメータを自動的に削除してクリーンなリンクにリダイレクトします",
+  "description": "Amazon、FANZA、DLsiteのアフィリエイトパラメータを自動的に削除してクリーンなリンクにリダイレクトします",
   "permissions": [
     "activeTab"
   ],
   "host_permissions": [
-    "https://www.amazon.co.jp/*"
+    "https://www.amazon.co.jp/*",
+    "https://www.dmm.co.jp/*",
+    "https://www.dlsite.com/*"
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.amazon.co.jp/*"],
+      "matches": [
+        "https://www.amazon.co.jp/*",
+        "https://www.dmm.co.jp/*",
+        "https://www.dlsite.com/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_start"
     }

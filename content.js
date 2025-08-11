@@ -1,10 +1,11 @@
-// Amazon.co.jpのアフィリエイトパラメータを削除するContent Script
+// Amazon、FANZA、DLsiteのアフィリエイトパラメータを削除するContent Script
 
 (function() {
   'use strict';
 
   // アフィリエイト関連のパラメータリスト
   const affiliateParams = [
+    // Amazon用パラメータ
     'tag',
     'linkCode',
     'linkId',
@@ -15,7 +16,13 @@
     'creative',
     'creativeASIN',
     'ascsubtag',
-    'ie'
+    'ie',
+    // 共通パラメータ（FANZA、DLsite）
+    'utm_medium',
+    'utm_source',
+    'utm_campaign',
+    'utm_content',
+    'unique_op'
   ];
 
   // URLからアフィリエイトパラメータを削除する関数
@@ -55,9 +62,9 @@
     }
   }
 
-  // ページ上のすべてのAmazonリンクを処理
-  function processAmazonLinks() {
-    const links = document.querySelectorAll('a[href*="amazon.co.jp"]');
+  // ページ上のすべてのアフィリエイトリンクを処理
+  function processAffiliateLinks() {
+    const links = document.querySelectorAll('a[href*="amazon.co.jp"], a[href*="dmm.co.jp"], a[href*="dlsite.com"]');
     
     links.forEach(link => {
       const originalHref = link.href;
@@ -77,11 +84,11 @@
         if (mutation.type === 'childList') {
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
-              // 新しく追加された要素内のAmazonリンクを処理
-              const amazonLinks = node.querySelectorAll ? 
-                node.querySelectorAll('a[href*="amazon.co.jp"]') : [];
+              // 新しく追加された要素内のアフィリエイトリンクを処理
+              const affiliateLinks = node.querySelectorAll ? 
+                node.querySelectorAll('a[href*="amazon.co.jp"], a[href*="dmm.co.jp"], a[href*="dlsite.com"]') : [];
               
-              amazonLinks.forEach(link => {
+              affiliateLinks.forEach(link => {
                 const originalHref = link.href;
                 const cleanUrl = removeAffiliateParams(originalHref);
                 
@@ -123,11 +130,11 @@
     // DOM読み込み完了後にリンク処理を実行
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
-        processAmazonLinks();
+        processAffiliateLinks();
         setupMutationObserver();
       });
     } else {
-      processAmazonLinks();
+      processAffiliateLinks();
       setupMutationObserver();
     }
   }
