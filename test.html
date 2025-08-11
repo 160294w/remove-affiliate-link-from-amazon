@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon Affiliate Link Remover - テスト用ページ</title>
+    <title>Affiliate Link Remover - テスト用ページ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,7 +39,7 @@
     </style>
 </head>
 <body>
-    <h1>Amazon Affiliate Link Remover - 動作テスト</h1>
+    <h1>Affiliate Link Remover - 動作テスト</h1>
     
     <div class="instructions">
         <h3>使用方法:</h3>
@@ -53,27 +53,57 @@
     </div>
 
     <div class="section">
-        <h2>テスト用アフィリエイトリンク</h2>
+        <h2>Amazon テストリンク</h2>
         <p>これらのリンクをクリックすると、アフィリエイトパラメータが削除されたクリーンなURLにリダイレクトされるはずです：</p>
         
         <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4?tag=mothergoose04-22&linkCode=ogi&th=1&psc=1" 
            class="test-link" target="_blank">
-            商品ページ（tagとlinkCodeパラメータ付き）
+            Amazon商品ページ（tagとlinkCodeパラメータ付き）
         </a>
         
         <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4?ref=sr_1_1&tag=affiliate123-22&ie=UTF8&camp=247&creative=1211" 
            class="test-link" target="_blank">
-            商品ページ（複数のアフィリエイトパラメータ付き）
+            Amazon商品ページ（複数のアフィリエイトパラメータ付き）
         </a>
         
         <a href="https://www.amazon.co.jp/s?k=iPhone&tag=test-22&ref_=nb_sb_noss" 
            class="test-link" target="_blank">
-            検索結果ページ（tagとref_パラメータ付き）
+            Amazon検索結果ページ（tagとref_パラメータ付き）
         </a>
         
         <a href="https://www.amazon.co.jp/dp/B08WJ4HLM4?ascsubtag=test123&linkId=abc123&creativeASIN=B08WJ4HLM4" 
            class="test-link" target="_blank">
-            商品ページ（その他のアフィリエイトパラメータ付き）
+            Amazon商品ページ（その他のアフィリエイトパラメータ付き）
+        </a>
+    </div>
+
+    <div class="section">
+        <h2>FANZA テストリンク</h2>
+        <p>FANZA のアフィリエイトパラメータ（utm_*）が削除されるかテスト：</p>
+        
+        <a href="https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=d_564243/?utm_medium=dmm_affiliate&utm_source=a2aaaeaaiiia-001&utm_campaign=affiliate_toolbar&utm_content=link" 
+           class="test-link" target="_blank">
+            FANZA商品ページ（全てのutmパラメータ付き）
+        </a>
+        
+        <a href="https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=d_265734/?utm_medium=dmm_affiliate&utm_source=test&category=doujin&utm_campaign=affiliate_toolbar" 
+           class="test-link" target="_blank">
+            FANZA商品ページ（utmパラメータと通常パラメータ混合）
+        </a>
+    </div>
+
+    <div class="section">
+        <h2>DLsite テストリンク</h2>
+        <p>DLsite のアフィリエイトパラメータ（unique_op、utm_*）が削除されるかテスト：</p>
+        
+        <a href="https://www.dlsite.com/maniax/work/=/product_id/RJ01150653.html/?unique_op=af&utm_medium=affiliate&utm_source=ch.dlsite.com%2Fmatome%2F456407" 
+           class="test-link" target="_blank">
+            DLsite商品ページ（unique_opとutmパラメータ付き）
+        </a>
+        
+        <a href="https://www.dlsite.com/maniax/work/=/product_id/RJ395652.html/?unique_op=af&utm_medium=affiliate&utm_source=test&locale=ja_JP&sort=date" 
+           class="test-link" target="_blank">
+            DLsite商品ページ（アフィリエイトパラメータと通常パラメータ混合）
         </a>
     </div>
 
@@ -101,12 +131,30 @@
     <script>
         function addDynamicLink() {
             const container = document.getElementById('dynamic-links');
-            const link = document.createElement('a');
-            link.href = 'https://www.amazon.co.jp/dp/B08WJ4HLM4?tag=dynamic-22&linkCode=test';
-            link.className = 'test-link';
-            link.target = '_blank';
-            link.textContent = '動的に追加されたアフィリエイトリンク（クリックしてテスト）';
-            container.appendChild(link);
+            
+            // Amazon dynamic link
+            const amazonLink = document.createElement('a');
+            amazonLink.href = 'https://www.amazon.co.jp/dp/B08WJ4HLM4?tag=dynamic-22&linkCode=test&ref=test';
+            amazonLink.className = 'test-link';
+            amazonLink.target = '_blank';
+            amazonLink.textContent = '動的Amazon アフィリエイトリンク';
+            container.appendChild(amazonLink);
+            
+            // FANZA dynamic link
+            const fanzaLink = document.createElement('a');
+            fanzaLink.href = 'https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=d_123456/?utm_medium=test&utm_source=dynamic&utm_campaign=test';
+            fanzaLink.className = 'test-link';
+            fanzaLink.target = '_blank';
+            fanzaLink.textContent = '動的FANZA アフィリエイトリンク';
+            container.appendChild(fanzaLink);
+            
+            // DLsite dynamic link
+            const dlsiteLink = document.createElement('a');
+            dlsiteLink.href = 'https://www.dlsite.com/maniax/work/=/product_id/RJ123456.html/?unique_op=af&utm_medium=dynamic&utm_source=test';
+            dlsiteLink.className = 'test-link';
+            dlsiteLink.target = '_blank';
+            dlsiteLink.textContent = '動的DLsite アフィリエイトリンク';
+            container.appendChild(dlsiteLink);
         }
 
         // ページ読み込み時にコンソールログを確認
